@@ -1,6 +1,5 @@
 package com.hms.entity;
 
-import javax.validation.constraints.Pattern;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table
+@Table(name="pat")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,7 +22,7 @@ public class Patient {
 	private String patientId;
 	private String name;
 	private String address;
-	@Pattern(regexp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$", message = "Invalid email address")
+//	@Pattern(regexp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$", message = "Invalid email address")
     private String email;
 	private String mobile;
 	
