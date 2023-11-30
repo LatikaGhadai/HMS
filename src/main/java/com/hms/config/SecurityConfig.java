@@ -1,0 +1,41 @@
+package com.hms.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+	
+	@Bean
+	public SecurityFilterChain filterchain(HttpSecurity http)throws Exception{
+		http.csrf(csrf->csrf.disable())
+		.authorizeHttpRequests(auth->auth
+				.requestMatchers("/auth/signup").permitAll()
+				.requestMatchers("/api/alldata","data/{patientId}").authenticated())
+		.formLogin(formLogin->formLogin.permitAll());
+		return http.build();
+	}
+	
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
+	@Bean
+	public UserDetailsService userDetail() {
+//		UserDetails user1 = User.withUsername("Rama").password(encoder.encode("12345")).build();
+//		UserDetails user2 = User.withUsername("Mama").password(encoder.encode("6789")).build();
+		return new CostumUserDetailService();
+	}
+
+}
