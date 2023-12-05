@@ -20,7 +20,7 @@ public class SecurityConfig {
 	public SecurityFilterChain filterchain(HttpSecurity http)throws Exception{
 		http.csrf(csrf->csrf.disable())
 		.authorizeHttpRequests(auth->auth
-				.requestMatchers("/auth/signup").permitAll()
+				.requestMatchers("/auth/signup","/auth/login").permitAll()
 				.requestMatchers("/api/alldata","data/{patientId}").authenticated())
 		.formLogin(formLogin->formLogin.permitAll());
 		return http.build();

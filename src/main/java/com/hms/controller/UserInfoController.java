@@ -9,11 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hms.entity.UserInfo;
+import com.hms.request.AuthRequest;
+import com.hms.service.JwtService;
 import com.hms.service.UserInfoService;
 
 @RestController
 @RequestMapping("/auth")
 public class UserInfoController {
+	
+
+	@Autowired
+	private JwtService jwtService;
 	
 	@Autowired
 	private UserInfoService userInfoService;
@@ -23,6 +29,10 @@ public class UserInfoController {
 		String saveUser = userInfoService.saveUser(userInfo);
 		return new ResponseEntity<>(saveUser,HttpStatus.CREATED);
 	}
-
+	
+	@PostMapping("/login")
+	public String authentcationgetToken(@RequestBody AuthRequest authRequest) {
+		return jwtService.generateToken(authRequest.getUsername());
+	}
 
 }

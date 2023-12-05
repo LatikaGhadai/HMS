@@ -17,5 +17,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		ErrorDetails error=new ErrorDetails(new Date(), ex.getMessage(), webRequest.getDescription(false));
 		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 	}
+	
+	@ExceptionHandler(PatientNotfoundExcepotion.class)
+	public ResponseEntity<ErrorDetails>patientNotFound(ResourceNotFoundException ex,WebRequest webRequest){       
+		ErrorDetails error=new ErrorDetails(new Date(), ex.getMessage(), webRequest.getDescription(false));
+		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+	}
 
 }
