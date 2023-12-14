@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.hms.entity.UserInfo;
 import com.hms.repo.UserInfoRepo;
 
+
 public class CostumUserDetailService implements UserDetailsService {
 	@Autowired
 	private UserInfoRepo userInfoRepo;

@@ -4,9 +4,10 @@ import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import com.hms.entity.UserInfo;
-
+@Component
 public class CostumUserDetails implements UserDetails{
 	
 	private String name;
