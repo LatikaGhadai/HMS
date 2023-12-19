@@ -31,7 +31,7 @@ public class SecurityConfig {
 		http.csrf(csrf->csrf.disable())
 		.authorizeHttpRequests(auth->auth
 				.requestMatchers("/auth/signup","/auth/login").permitAll()
-				.requestMatchers("/api/alldata","data/{patientId}").authenticated())
+				.requestMatchers("/api/**").authenticated())
 		.sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authenticationProvider(authenticationProvider())
         .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
